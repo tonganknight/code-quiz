@@ -31,6 +31,10 @@
     border-bottom: solid var(--primarycolor);
 }
 
+.banner-img h1{
+   margin-left: 00px;
+}
+
 .scoreboard{
     width: 70%;
     height: 150px;
@@ -43,7 +47,7 @@
 .scoreboard h1{ /*makes Highscore show up correct*/
     transform: scaleX(-1);
     margin-top: 50px;
-    margin-left: 30px;
+    margin-left: 50px;
   
 }
 
@@ -74,6 +78,7 @@
 
 .btn{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 50px;
@@ -84,9 +89,14 @@ button{
     height: 50px;
     width: 300px;
     border-radius: 17px;
-    background-color: var(--secondarycolor);
+    margin-top: 15px;
+    background-color: var(--primarycolor);
     color:white;
     font-size: 20px;
+}
+
+button:hover{
+    background-color: var(--secondarycolor);
 }
 
 
@@ -99,7 +109,6 @@ button{
     height: 100px;
     text-align: center;
     margin-top: 100px;
-
     color: var(--secondarycolor);
     font-family: Georgia, Times, 'Times New Roman', serif;
 
