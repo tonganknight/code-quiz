@@ -11,7 +11,10 @@ document.getElementById("startbutton").addEventListener("click",function test(){
         startCountdown=setInterval(timer,1000);
         }
 
-    function gameover()
+    function gameover(){
+        
+
+    }
 
 
 
@@ -24,7 +27,7 @@ document.getElementById("startbutton").addEventListener("click",function test(){
 
             
              if (time === 0){
-                 Gameover()
+                 gameover()
               } 
     }
 
