@@ -4,12 +4,34 @@ document.getElementById("startbutton").addEventListener("click",function test(){
         clearInterval(startCountdown);
         window.alert("Wrong! -10secs, try again");
 
-        time= time-9
+        time= time-10
 
         timer()
 
         startCountdown=setInterval(timer,1000);
         }
+
+        //this function clones the buttons. As a side effect, it removes the listeners. Since remove event listener wasn't working....
+        function clearbuttons(){
+
+        var button1old = document.getElementById("button1");
+        var button1new = document.getElementById("button1").cloneNode(true);
+        button1old.parentNode.replaceChild(button1new, button1old);
+    
+        var button2old = document.getElementById("button2");
+        var button2new = document.getElementById("button2").cloneNode(true);
+        button2old.parentNode.replaceChild(button2new, button2old);
+    
+        var button3old = document.getElementById("button3");
+        var button3new = document.getElementById("button3").cloneNode(true);
+        button3old.parentNode.replaceChild(button3new, button3old);
+    
+        var button4old = document.getElementById("button4");
+        var button4new = document.getElementById("button4").cloneNode(true);
+        button4old.parentNode.replaceChild(button4new, button4old);
+    
+        }
+    
 
     function gameover(){
 
@@ -17,18 +39,44 @@ document.getElementById("startbutton").addEventListener("click",function test(){
 
         score = time *1000
 
-        document.getElementById("question").style.visibility ="hidden"
-
-
         //post game over message
         document.getElementById("time").setAttribute("class","gameover")
         document.getElementById("time").textContent= "Game Over"
-
+        document.getElementById("time").style.color = "var(--primarycolor)"
 
         var initials =window.prompt("Good job please enter your initials")
 
-        localStorage('initials',initials)
-        localStorage('score',score)
+        var myInitials = window.localStorage.setItem('initials',initials)
+        var myScore = window.localStorage.setItem('score',score)
+
+        myInitials
+        myScore
+
+        document.getElementById("question").style.visibility ="hidden"
+
+        //update buttons
+        var removebutton2 =document.getElementById("button2");
+
+        removebutton2.parentNode.removeChild(removebutton2);
+
+        var removebutton3 =document.getElementById("button3");
+
+        removebutton3.parentNode.removeChild(removebutton3);
+
+        var removebutton4 =document.getElementById("button4");
+
+        removebutton4.parentNode.removeChild(removebutton4);
+
+        document.getElementById("button1").textContent = "Try Again?"
+
+        var button1old = document.getElementById("button1");
+        var button1new = document.getElementById("button1").cloneNode(true);
+        button1old.parentNode.replaceChild(button1new, button1old);
+
+        document.getElementById("button1").addEventListener("click", function(){
+            test()
+        });
+        
     }
 
 
@@ -129,7 +177,7 @@ document.getElementById("startbutton").addEventListener("click",function test(){
 
     
 
-    createbuttons()// create question buttons
+    // create question buttons
 
 
     //question7
@@ -203,6 +251,7 @@ document.getElementById("startbutton").addEventListener("click",function test(){
     function question5(){
 
         clearbuttons()
+
 
         var question = document.getElementById("question");
         var q2 =question.innerHTML ='In the bubbling, what is the deepest nested event referred as?'
@@ -361,6 +410,8 @@ document.getElementById("startbutton").addEventListener("click",function test(){
 
     //question1
     function question1(){
+
+        createbuttons()
 
         function wrong(){
             clearInterval(startCountdown);
