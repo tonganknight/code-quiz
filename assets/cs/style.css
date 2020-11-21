@@ -17,6 +17,10 @@
 
 }
 
+.gameover{/* for javascript element*/
+    font-size: 200px;
+}
+
 /* End of the Utility section*/
 
 .banner-img{
@@ -76,6 +80,8 @@
    
 }
 
+
+/*buttons*/
 .btn{
     display: flex;
     flex-direction: column;
@@ -99,7 +105,7 @@ button:hover{
     background-color: var(--secondarycolor);
 }
 
-
+/* text on page*/
 
 .intro h2{
     display: flex;
@@ -127,9 +133,6 @@ button:hover{
 
 }
 
-.gameover{
-    font-size: 200px;
-}
     
     
     

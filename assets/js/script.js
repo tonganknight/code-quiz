@@ -128,11 +128,12 @@ document.getElementById("startbutton").addEventListener("click",function test(){
         score = time *1000
 
         if(score <= 0){
-            score = 0
+
+        clearInterval(startCountdown);
 
             window.alert("You did not finish with a score! Try agin")
 
-            clearInterval(startCountdown);
+            
 
             restart()
 
@@ -455,8 +456,7 @@ document.getElementById("startbutton").addEventListener("click",function test(){
 
         killstartbutton4.parentNode.removeChild(killstartbutton4);
 
-
-
+    
         var buttondiv =document.getElementById("buttons");
 
         var createButtonstart = document.createElement("BUTTON");
@@ -466,14 +466,14 @@ document.getElementById("startbutton").addEventListener("click",function test(){
         var writeStartbutton =document.createTextNode('Try Again?');
             
         createButtonstart.appendChild(writeStartbutton);
-            
-        buttondiv.appendChild(createButtonstart);
+
+        buttondiv.appendChild(createButtonstart); 
 
         document.getElementById("startbutton").addEventListener("click", function(){
             test()
 
 
-        });
+        }); 
      
     }
 
