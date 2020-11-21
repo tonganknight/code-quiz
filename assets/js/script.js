@@ -54,26 +54,39 @@ document.getElementById("startbutton").addEventListener("click",function test(){
 
         document.getElementById("question").style.visibility ="hidden"
 
-        //update buttons
-        var removebutton2 =document.getElementById("button2");
+        //remove buttons
+        
+        var killstartbutton1 =document.getElementById("button1");
 
-        removebutton2.parentNode.removeChild(removebutton2);
+        killstartbutton1.parentNode.removeChild(killstartbutton1);
 
-        var removebutton3 =document.getElementById("button3");
+        var killstartbutton2 =document.getElementById("button2");
 
-        removebutton3.parentNode.removeChild(removebutton3);
+        killstartbutton2.parentNode.removeChild(killstartbutton2);
 
-        var removebutton4 =document.getElementById("button4");
+        var killstartbutton3 =document.getElementById("button3");
 
-        removebutton4.parentNode.removeChild(removebutton4);
+        killstartbutton3.parentNode.removeChild(killstartbutton3);
 
-        document.getElementById("button1").textContent = "Try Again?"
+        var killstartbutton4 =document.getElementById("button4");
 
-        var button1old = document.getElementById("button1");
-        var button1new = document.getElementById("button1").cloneNode(true);
-        button1old.parentNode.replaceChild(button1new, button1old);
+        killstartbutton4.parentNode.removeChild(killstartbutton4);
 
-        document.getElementById("button1").addEventListener("click", function(){
+        //create startbutton
+
+        var buttondiv =document.getElementById("buttons");
+
+        var createButtonstart = document.createElement("BUTTON");
+
+        createButtonstart.id ="startbutton";
+            
+        var writeStartbutton =document.createTextNode('Try Again?');
+            
+        createButtonstart.appendChild(writeStartbutton);
+            
+        buttondiv.appendChild(createButtonstart);
+
+        document.getElementById("startbutton").addEventListener("click", function(){
             test()
         });
         
@@ -410,6 +423,12 @@ document.getElementById("startbutton").addEventListener("click",function test(){
     function question1(){
 
         createbuttons()
+
+        document.getElementById("question").style.visibility ="visible"
+        document.getElementById("time").removeAttribute("class","gameover")
+        document.getElementById("time").textContent= time
+        document.getElementById("time").style.color = "var(--secondarycolor)"
+
 
         function wrong(){
             clearInterval(startCountdown);
