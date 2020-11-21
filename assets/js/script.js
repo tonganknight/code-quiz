@@ -136,10 +136,10 @@ document.getElementById("startbutton").addEventListener("click",function test(){
 
             restart()
 
-           
-
+            return;
         }
-        
+
+           
 
         //post game over message
         document.getElementById("time").setAttribute("class","gameover")
@@ -174,7 +174,7 @@ document.getElementById("startbutton").addEventListener("click",function test(){
                     highscore.textContent =oldScore
                 }
 
-                if(myScore === 0){
+                if(myScore == 0){
 
                     highscore.textContent =oldScore
 
@@ -435,7 +435,6 @@ document.getElementById("startbutton").addEventListener("click",function test(){
     }
 
     function restart(){
-
 
         document.getElementById("time").textContent = "This is short coding test for Javascript"
         document.getElementById("question").textContent ="In this test you will be given a series of challenging questions. You will also be alloted a certain amount of time. If you answer any of the questions wrong your time will be reduced! Complete the test as fast as you can and earn the highest score!"
