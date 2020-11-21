@@ -12,8 +12,23 @@ document.getElementById("startbutton").addEventListener("click",function test(){
         }
 
     function gameover(){
-        
 
+        clearInterval(startCountdown);
+
+        score = time *1000
+
+        document.getElementById("question").style.visibility ="hidden"
+
+
+        //post game over message
+        document.getElementById("time").setAttribute("class","gameover")
+        document.getElementById("time").textContent= "Game Over"
+
+
+        var initials =window.prompt("Good job please enter your initials")
+
+        localStorage('initials',initials)
+        localStorage('score',score)
     }
 
 
@@ -27,7 +42,10 @@ document.getElementById("startbutton").addEventListener("click",function test(){
 
             
              if (time === 0){
+                clearInterval(startCountdown);
+
                  gameover()
+
               } 
     }
 
