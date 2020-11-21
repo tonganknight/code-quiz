@@ -89,9 +89,7 @@ document.getElementById("startbutton").addEventListener("click",function test(){
             time--;
 
             
-             if (time === 0){
-                clearInterval(startCountdown);
-
+             if (time === -2){
                  gameover()
 
               } 
