@@ -1,15 +1,44 @@
 document.getElementById("startbutton").addEventListener("click",function test(){
     
+    //My timer function
+    var time =60
+    var timer =function(){
+        var changetime =document.getElementById("time")//plug it into the HTML
+            changetime.textContent = time
+            time--;
+
+            
+             if (time  < 0){
+                 gameover()
+
+              } 
+        }
+
+        var startCountdown =setInterval(timer,1000);// starts the countdown  
+
+        //end of my timer function
+
+
+
     function wrong(){
+
         clearInterval(startCountdown);
-        window.alert("Wrong! -10secs, try again");
+
+        window.alert("Wrong Answer! You lose 10 sec from the clock!, try again");
 
         time= time-10
+
+        if(time <=0){
+
+            clearInterval(startCountdown);
+            gameover()
+        }
 
         timer()
 
         startCountdown=setInterval(timer,1000);
         }
+
 
         //this function clones the buttons. As a side effect, it removes the listeners. Since remove event listener wasn't working....
         function clearbuttons(){
@@ -33,96 +62,10 @@ document.getElementById("startbutton").addEventListener("click",function test(){
         }
     
 
-    function gameover(){
-
-        clearInterval(startCountdown);
-
-        score = time *1000
-
-        //post game over message
-        document.getElementById("time").setAttribute("class","gameover")
-        document.getElementById("time").textContent= "Game Over"
-        document.getElementById("time").style.color = "var(--primarycolor)"
-
-        var initials =window.prompt("Good job please enter your initials")
-
-        var myInitials = window.localStorage.setItem('initials',initials)
-        var myScore = window.localStorage.setItem('score',score)
-
-        myInitials
-        myScore
-
-        document.getElementById("question").style.visibility ="hidden"
-
-        //remove buttons
-        
-        var killstartbutton1 =document.getElementById("button1");
-
-        killstartbutton1.parentNode.removeChild(killstartbutton1);
-
-        var killstartbutton2 =document.getElementById("button2");
-
-        killstartbutton2.parentNode.removeChild(killstartbutton2);
-
-        var killstartbutton3 =document.getElementById("button3");
-
-        killstartbutton3.parentNode.removeChild(killstartbutton3);
-
-        var killstartbutton4 =document.getElementById("button4");
-
-        killstartbutton4.parentNode.removeChild(killstartbutton4);
-
-        //create startbutton
-
-        var buttondiv =document.getElementById("buttons");
-
-        var createButtonstart = document.createElement("BUTTON");
-
-        createButtonstart.id ="startbutton";
-            
-        var writeStartbutton =document.createTextNode('Try Again?');
-            
-        createButtonstart.appendChild(writeStartbutton);
-            
-        buttondiv.appendChild(createButtonstart);
-
-        document.getElementById("startbutton").addEventListener("click", function(){
-            test()
-        });
-        
-    }
-
-
-
-    //My timer function
-    var time =60
-    var timer =function(){
-        var changetime =document.getElementById("time")//plug it into the HTML
-            changetime.textContent = time
-            time--;
-
-            
-             if (time === -2){
-                 gameover()
-
-              } 
-    }
-
-    var startCountdown =setInterval(timer,1000);// starts the countdown  
-
-    //end of my timer function
-
-    //variables for buttons
-
-    var button1 = document.getElementById("button1")
-    var button2 = document.getElementById("button2")
-    var button3 = document.getElementById("button3")
-    var button4 = document.getElementById("button4")
-     
-    
-
     //creating buttons             
     function createbuttons(){
+
+
 
         //get rid of the startbutton....
         var killstartbutton =document.getElementById("startbutton");
@@ -176,19 +119,114 @@ document.getElementById("startbutton").addEventListener("click",function test(){
         buttonboard.appendChild(createbutton4);
 
 
-
     }
 
-    
+    function gameover(){
 
-    
+        clearInterval(startCountdown);
+
+        score = time *1000
+
+        if(score <= 0){
+            score = 0
+
+            window.alert("You did not finish with a score! Try agin")
+
+            clearInterval(startCountdown);
+
+            restart()
+
+           
+
+        }
+        
+
+        //post game over message
+        document.getElementById("time").setAttribute("class","gameover")
+        document.getElementById("time").textContent= "Game Over"
+        document.getElementById("time").style.color = "var(--primarycolor)"
+
+        var initials =window.prompt("Good job please enter your initials")
+
+        
+
+        //local storage packaging and display
+        var myInitials = window.localStorage.setItem('initials',initials)
+        var myScore = window.localStorage.setItem('score',score)
+        var oldInitials =window.localStorage.getItem("initials", initials)
+        var oldScore =window.localStorage.getItem("initials", initials)
+        var highscore =document.getElementById("highscore")
+
+           myInitials
+
+                if(myScore > oldScore){
+
+                    highscore.textContent = score
+                }
+
+                if(myScore = oldScore){
+
+                    highscore.textContent =score
+                }
+
+                if(myScore < oldScore){
+
+                    highscore.textContent =oldScore
+                }
+
+                if(myScore === 0){
+
+                    highscore.textContent =oldScore
+
+                }
+
+
+        document.getElementById("question").style.visibility ="hidden"
+
+        //remove buttons
+        
+        var killstartbutton1 =document.getElementById("button1");
+
+        killstartbutton1.parentNode.removeChild(killstartbutton1);
+
+        var killstartbutton2 =document.getElementById("button2");
+
+        killstartbutton2.parentNode.removeChild(killstartbutton2);
+
+        var killstartbutton3 =document.getElementById("button3");
+
+        killstartbutton3.parentNode.removeChild(killstartbutton3);
+
+        var killstartbutton4 =document.getElementById("button4");
+
+        killstartbutton4.parentNode.removeChild(killstartbutton4);
+
+        //create startbutton
+
+        var buttondiv =document.getElementById("buttons");
+
+        var createButtonstart = document.createElement("BUTTON");
+
+        createButtonstart.id ="startbutton";
+            
+        var writeStartbutton =document.createTextNode('Try Again?');
+            
+        createButtonstart.appendChild(writeStartbutton);
+            
+        buttondiv.appendChild(createButtonstart);
+
+        document.getElementById("startbutton").addEventListener("click", function(){
+            test()
+
+
+        });
+        
+    }
 
 
     //End of my function list
 
-    
 
-    // create question buttons
 
 
     //question7
@@ -396,6 +434,50 @@ document.getElementById("startbutton").addEventListener("click",function test(){
 
     }
 
+    function restart(){
+
+
+        document.getElementById("time").textContent = "This is short coding test for Javascript"
+        document.getElementById("question").textContent ="In this test you will be given a series of challenging questions. You will also be alloted a certain amount of time. If you answer any of the questions wrong your time will be reduced! Complete the test as fast as you can and earn the highest score!"
+
+        var killstartbutton1 =document.getElementById("button1");
+
+        killstartbutton1.parentNode.removeChild(killstartbutton1);
+
+        var killstartbutton2 =document.getElementById("button2");
+
+        killstartbutton2.parentNode.removeChild(killstartbutton2);
+
+        var killstartbutton3 =document.getElementById("button3");
+
+        killstartbutton3.parentNode.removeChild(killstartbutton3);
+
+        var killstartbutton4 =document.getElementById("button4");
+
+        killstartbutton4.parentNode.removeChild(killstartbutton4);
+
+
+
+        var buttondiv =document.getElementById("buttons");
+
+        var createButtonstart = document.createElement("BUTTON");
+
+        createButtonstart.id ="startbutton";
+            
+        var writeStartbutton =document.createTextNode('Try Again?');
+            
+        createButtonstart.appendChild(writeStartbutton);
+            
+        buttondiv.appendChild(createButtonstart);
+
+        document.getElementById("startbutton").addEventListener("click", function(){
+            test()
+
+
+        });
+     
+    }
+
 
 
     //this function clones the buttons. As a side effect, it removes the listeners. Since remove event listener wasn't working....
@@ -425,21 +507,10 @@ document.getElementById("startbutton").addEventListener("click",function test(){
         createbuttons()
 
         document.getElementById("question").style.visibility ="visible"
-        document.getElementById("time").removeAttribute("class","gameover")
+        document.getElementById("time").classList.remove("gameover")
         document.getElementById("time").textContent= time
         document.getElementById("time").style.color = "var(--secondarycolor)"
 
-
-        function wrong(){
-            clearInterval(startCountdown);
-            window.alert("Wrong! -10secs, try again");
-    
-            time= time-9
-    
-            timer()
-    
-            startCountdown=setInterval(timer,1000);
-        }
 
         var question = document.getElementById("question")
 
