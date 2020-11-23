@@ -153,33 +153,26 @@ document.getElementById("startbutton").addEventListener("click",function test(){
 
         //local storage packaging and display
         var myInitials = window.localStorage.setItem('initials',initials)
-        var myScore = window.localStorage.setItem('score',score)
-        var oldInitials =window.localStorage.getItem("initials", initials)
-        var oldScore =window.localStorage.getItem("initials", initials)
         var highscore =document.getElementById("highscore")
+        var getMyscore =window.localStorage.getItem("score")
+     
 
-           myInitials
+    
 
-                if(myScore > oldScore){
+       myInitials
 
-                    highscore.textContent = score
-                }
+        if(score <= getMyscore){
 
-                if(myScore = oldScore){
+            highscore.textContent =getMyscore
 
-                    highscore.textContent =score
-                }
+        }
 
-                if(myScore < oldScore){
+        if(score > getMyscore){
+            var myScore = window.localStorage.setItem('score',score)
+            highscore.textContent =score
+        }
 
-                    highscore.textContent =oldScore
-                }
-
-                if(myScore == 0){
-
-                    highscore.textContent =oldScore
-
-                }
+               
 
 
         document.getElementById("question").style.visibility ="hidden"
@@ -237,12 +230,12 @@ document.getElementById("startbutton").addEventListener("click",function test(){
         clearbuttons()
 
         var question = document.getElementById("question");
-        var q2 =question.innerHTML ="For Variable X, How would I show an increment to X ?"
+        var q2 =question.innerHTML ="For Variable X, How would I show an increment of 1 to X ?"
 
         document.getElementById("button1").textContent = "X--";
         document.getElementById("button2").textContent = "X++";
         document.getElementById("button3").textContent = "X=X+X";
-        document.getElementById("button4").textContent = "X=+X"
+        document.getElementById("button4").textContent = "X~~~+-$X"
 
         document.getElementById("button1").addEventListener("click", function(){
             wrong()
